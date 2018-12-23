@@ -30,3 +30,26 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom */
+
+/* All */
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* ChooseTeamOption */
+
+div.chooseTeamOption:not(.selectedTeam) {
+  border: 1px solid transparent;
+}
+
+div.chooseTeamOption.selectedTeam {
+  border: 1px solid green;
+}
+
+/* ChooseTeam */
+
+
