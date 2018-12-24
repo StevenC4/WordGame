@@ -42,6 +42,10 @@ ul {
 
 /* ChooseTeamOption */
 
+div.chooseTeamOption {
+  cursor: pointer;
+}
+
 div.chooseTeamOption:not(.selectedTeam) {
   border: 1px solid transparent;
 }

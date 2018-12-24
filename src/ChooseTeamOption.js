@@ -7,7 +7,7 @@ class ChooseTeamOption extends Component {
         playerNames: PropTypes.objectOf(PropTypes.string).isRequired,
         selected: PropTypes.bool.isRequired,
         selectTeam: PropTypes.func.isRequired,
-        teamId: PropTypes.number.isRequired,
+        teamId: PropTypes.string.isRequired,
         teamMembers: PropTypes.arrayOf(PropTypes.string).isRequired
     };
 
@@ -23,7 +23,7 @@ class ChooseTeamOption extends Component {
     render() {
         return (
             <div className={classNames('chooseTeamOption', {selectedTeam: this.props.selected})} onClick={this.clickHandler}>
-                <h1>Team {this.props.teamId + 1}</h1>
+                <h1>Team {this.props.teamId}</h1>
                 <h3>Members ({this.props.teamMembers.length})</h3>
                 <ul>
                     {
