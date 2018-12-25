@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import actionCreators from '../../actionCreators';
+import actionCreators from '../../../actionCreators';
+import WordCollector from './index';
 
-class WordCollector extends Component {
+class WordForm extends Component {
     static propTypes = {
         addWord: PropTypes.func.isRequired,
         errorMessage: PropTypes.string,
@@ -70,7 +71,7 @@ const mapStateToProps = (state) => {
         errorMessage: state.game.wordCollectorError,
         playerWordIds,
         words: state.game.words,
-        numRemainingWords: WordCollector.numberOfWords - playerWordIds.length
+        numRemainingWords: WordForm.numberOfWords - playerWordIds.length
     };
 }
 
@@ -78,4 +79,4 @@ const mapDispatchToProps = {
     addWord: actionCreators.game.addWord
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WordCollector);
+export default connect(mapStateToProps, mapDispatchToProps)(WordForm);
