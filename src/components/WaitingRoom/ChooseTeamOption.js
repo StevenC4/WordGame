@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import actionCreators from '../../actionCreators';
 
 class ChooseTeamOption extends Component {
     static propTypes = {
@@ -17,7 +19,7 @@ class ChooseTeamOption extends Component {
     }
 
     clickHandler() {
-        this.props.selectTeam(this.props.teamId);
+        this.props.selectTeam(this.props.playerId, this.props.teamId);
     }
 
     render() {
@@ -39,4 +41,16 @@ class ChooseTeamOption extends Component {
     }
 };
 
-export default ChooseTeamOption;
+const mapStateToProps = (state, props) => {
+    return {
+        playerId: state.me.playerId,
+        playerNames: state.players.names,
+        teamMembers: state.waitingRoom.teamMembers[props.teamId]
+    };
+}
+
+const mapDispatchToProps = {
+    selectTeam: actionCreators.waitingRoom.setPlayerTeam
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseTeamOption);

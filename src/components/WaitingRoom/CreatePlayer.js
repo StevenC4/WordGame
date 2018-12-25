@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types';
+import actionCreators from '../../actionCreators';
 
 class CreatePlayer extends Component {
     defaultState = {
@@ -23,19 +25,18 @@ class CreatePlayer extends Component {
     }
 
     handleChange(e) {
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
+        const {target} = e;
+        const {value} = target;
 
         this.setState({
-            [name]: value
+            playerNameInput: value
         });
     }
 
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.playerNameInput.trim() !== '') {
-            this.props.setPlayerName(this.state.playerNameInput);
+            this.props.setPlayerName(this.props.playerId, this.state.playerNameInput);
             this.setState({
                 playerNameInput: ''
             })
@@ -60,4 +61,16 @@ class CreatePlayer extends Component {
     }
 }
 
-export default CreatePlayer;
+const mapStateToProps = (state) => {
+    return {
+        playerId: state.me.playerId,
+        playerIds: state.waitingRoom.playerIds,
+        playerNames: state.players.names
+    };
+};
+
+const mapDispatchToProps = {
+    setPlayerName: actionCreators.waitingRoom.setPlayerName
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePlayer);
