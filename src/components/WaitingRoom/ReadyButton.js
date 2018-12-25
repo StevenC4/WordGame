@@ -23,9 +23,16 @@ class ReadyButton extends Component {
 		this.startGame = this.startGame.bind(this);
 	}
 
+	componentDidUpdate() {
+		if (this.props.readyCountdownSeconds === 0) {
+			clearInterval(this.waitingRoomTimer);
+			this.startGame();
+		}
+	}
+
     handleReady() {
-		this.props.setReady(true);
 		this.props.resetCountdownTimer();
+		this.props.setReady(true);
 		this.waitingRoomTimer = setInterval(this.decrementTimer, 1000);
 	}
 
@@ -35,12 +42,7 @@ class ReadyButton extends Component {
 	}
 
 	decrementTimer() {
-		if (this.props.readyCountdownSeconds === 0) {
-			clearInterval(this.waitingRoomTimer);
-			this.startGame();
-		} else {
-			this.props.tickCountdownTimer();
-		}
+		this.props.tickCountdownTimer();
 	}
 
 	startGame() {

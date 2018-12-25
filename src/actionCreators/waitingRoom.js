@@ -41,7 +41,7 @@ export function setReady(ready) {
 export function tickCountdownTimer() {
     return function(dispatch, _getState) {
         dispatch({
-            type: 'TICKET_COUNTDOWN_TIMER'
+            type: 'TICK_COUNTDOWN_TIMER'
         });
     }
 }

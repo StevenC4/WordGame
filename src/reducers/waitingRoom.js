@@ -11,7 +11,7 @@ const initialState = {
         '89012'
     ],
     ready: false,
-    readyCountdownSeconds: 5,
+    readyCountdownSeconds: ReadyButton.defaultTimerSeconds,
     teamIds: ['1', '2'],
     teamMembers: {
         '1': ['23456', '45678', '67890', '89012'],
@@ -62,7 +62,7 @@ function waitingRoom(state = initialState, action) {
                 ...state,
                 ready: action.ready
             }
-        case 'TICKET_COUNTDOWN_TIMER':
+        case 'TICK_COUNTDOWN_TIMER':
             return {
                 ...state,
                 readyCountdownSeconds: state.readyCountdownSeconds - 1
