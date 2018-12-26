@@ -8,7 +8,11 @@ import PlayerTurn from './PlayerTurn';
 
 class Game extends Component {
 	static propTypes = {
-		collectingWords: PropTypes.bool.isRequired
+		awaitingActivePlayerConfirmation: PropTypes.bool.isRequired,
+		collectingWords: PropTypes.bool.isRequired,
+		explainingRules: PropTypes.bool.isRequired,
+		playerTurnActive: PropTypes.bool.isRequired,
+		turnStartCountdown: PropTypes.bool.isRequired
 	};
 
 	render() {

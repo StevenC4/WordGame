@@ -1,4 +1,5 @@
 import TurnStartCountdown from "../components/Game/TurnStartCountdown";
+import PlayerTurn from "../components/Game/PlayerTurn";
 
 // const initialState = {
 //     started: false,
@@ -33,10 +34,11 @@ const initialState = {
         '2': ['34567', '56789', '78901', '89012']
     },
     turnNumber: 0,
+    turnCountdownSeconds: PlayerTurn.numberOfSeconds,
     turnStartCountdownSeconds: TurnStartCountdown.numberOfSeconds,
     round: 1,
     started: true,
-    state: 'PLAYER_TURN_COUNTDOWN',
+    state: 'PLAYER_TURN_ACTIVE',
     wordIds: [
         '1',
         '2',
@@ -189,7 +191,12 @@ function game(state = initialState, action) {
                 ...state,
                 started: true
             }
-        case 'TURN_START_COUNTDOWN_TICKET':
+        case 'TURN_COUNTDOWN_TICK':
+            return {
+                ...state,
+                turnCountdownSeconds: action.turnCountdownSeconds
+            }
+        case 'TURN_START_COUNTDOWN_TICK':
             return {
                 ...state,
                 turnStartCountdownSeconds: action.turnStartCountdownSeconds

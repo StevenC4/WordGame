@@ -69,13 +69,29 @@ export function startGame() {
     }
 }
 
+export function turnCountdownTick() {
+    return function(dispatch, getState) {
+        const state = getState();
+        const turnCountdownSeconds = state.game.turnCountdownSeconds - 1;
+
+        dispatch({
+            type: 'TURN_COUNTDOWN_TICK',
+            turnCountdownSeconds
+        });
+
+        if (turnCountdownSeconds === 0) {
+            // TODO: increment turn and set awaiting player confirmation
+        }
+    }
+}
+
 export function turnStartCountdownTick() {
     return function(dispatch, getState) {
         const state = getState();
         const turnStartCountdownSeconds = state.game.turnStartCountdownSeconds - 1;
 
         dispatch({
-            type: 'TURN_START_COUNTDOWN_TICKET',
+            type: 'TURN_START_COUNTDOWN_TICK',
             turnStartCountdownSeconds
         });
 
