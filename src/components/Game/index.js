@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import WordCollector from './WordCollector';
+import AwaitingActivePlayerConfirmation from './AwaitingActivePlayerConfirmation';
+import TurnStartCountdown from './TurnStartCountdown';
 
 class Game extends Component {
 	static propTypes = {
@@ -12,6 +14,10 @@ class Game extends Component {
 		return (
 			<div>
 				{this.props.collectingWords && <WordCollector/>}
+				{this.props.explainingRules && <div>Rules</div>}
+				{this.props.awaitingActivePlayerConfirmation && <AwaitingActivePlayerConfirmation/>}
+				{this.props.turnStartCountdown && <TurnStartCountdown/>}
+				{this.props.playerTurnActive && <div>Player turn active</div>}
 			</div>
 		);
 	}
@@ -19,7 +25,11 @@ class Game extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		collectingWords: state.game.state === 'COLLECTING_WORDS'
+		awaitingActivePlayerConfirmation: state.game.state === 'AWAITING_ACTIVE_PLAYER_CONFIRMATION',
+		collectingWords: state.game.state === 'COLLECTING_WORDS',
+		explainingRules: state.game.state === 'EXPLAINING_RULES',
+		playerTurnActive: state.game.state === 'PLAYER_TURN_ACTIVE',
+		turnStartCountdown: state.game.state === 'PLAYER_TURN_COUNTDOWN'
 	};
 };
 

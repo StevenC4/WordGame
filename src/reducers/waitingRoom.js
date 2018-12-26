@@ -1,21 +1,45 @@
 import ReadyButton from "../components/WaitingRoom/ReadyButton";
 
+// First one is the real one
+
+// const initialState = {
+//     playerIds: [],
+//     ready: false,
+//     readyCountdownSeconds: ReadyButton.defaultTimerSeconds,
+//     teamIds: ['1', '2'],
+//     teamMembers: {
+//         '1': [],
+//         '2': []
+//     }
+// };
+
+// const initialState = {
+//     playerIds: [
+//         '23456',
+//         '34567',
+//         '45678',
+//         '56789',
+//         '67890',
+//         '78901',
+//         '89012'
+//     ],
+//     ready: false,
+//     readyCountdownSeconds: ReadyButton.defaultTimerSeconds,
+//     teamIds: ['1', '2'],
+//     teamMembers: {
+//         '1': ['23456', '45678', '67890', '89012'],
+//         '2': ['34567', '56789', '78901']
+//     }
+// };
+
 const initialState = {
-    playerIds: [
-        '23456',
-        '34567',
-        '45678',
-        '56789',
-        '67890',
-        '78901',
-        '89012'
-    ],
-    ready: false,
-    readyCountdownSeconds: ReadyButton.defaultTimerSeconds,
+    playerIds: [],
+    ready: true,
+    readyCountdownSeconds: 0,
     teamIds: ['1', '2'],
     teamMembers: {
-        '1': ['23456', '45678', '67890', '89012'],
-        '2': ['34567', '56789', '78901'],
+        '1': [],
+        '2': []
     }
 };
 

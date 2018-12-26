@@ -33,6 +33,32 @@ export function addWord(word) {
     }
 }
 
+export function movePlayersFromWaitingRoomToGame() {
+    return function(dispatch, getState) {
+        const state = getState();
+        dispatch({
+            type: 'MOVE_PLAYERS_FROM_WAITING_ROOM_TO_GAME',
+            playerIds: [...state.waitingRoom.playerIds]
+        });
+    }
+}
+
+export function resetTurnStartCountdown() {
+    return function(dispatch, _getState) {
+        dispatch({
+            type: 'RESET_TURN_START_COUNTDOWN'
+        });
+    }
+}
+
+export function startTurnStartCountdown() {
+    return function(dispatch, _getState) {
+        dispatch({
+            type: 'SET_PLAYER_TURN_COUNTDOWN'
+        });
+    }
+}
+
 export function startGame() {
     return function(dispatch, _getState) {
         dispatch({
@@ -41,12 +67,20 @@ export function startGame() {
     }
 }
 
-export function movePlayersFromWaitingRoomToGame() {
+export function turnStartCountdownTick() {
     return function(dispatch, getState) {
         const state = getState();
+        const turnStartCountdownSeconds = state.game.turnStartCountdownSeconds - 1;
+
         dispatch({
-            type: 'MOVE_PLAYERS_FROM_WAITING_ROOM_TO_GAME',
-            playerIds: [...state.waitingRoom.playerIds]
+            type: 'TURN_START_COUNTDOWN_TICKET',
+            turnStartCountdownSeconds
         });
+
+        if (turnStartCountdownSeconds === 0) {
+            dispatch({
+                type: 'SET_PLAYER_TURN_ACTIVE'
+            });
+        }
     }
 }
