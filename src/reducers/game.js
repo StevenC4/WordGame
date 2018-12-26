@@ -1,9 +1,13 @@
 import TurnStartCountdown from "../components/Game/TurnStartCountdown";
 
 // const initialState = {
-//     activePlayerId: '',
 //     started: false,
 //     playerIds: [],
+//     teamMembers: {
+//         '1': ['23456', '45678', '67890', '89012'],
+//         '2': ['34567', '56789', '78901']
+//     }
+//     turnNumber: 0,
 //     turnStartCountdown: TurnStartCountdown.numberOfSeconds,
 //     round: 1,
 //     state: 'COLLECTING_WORDS',
@@ -14,8 +18,8 @@ import TurnStartCountdown from "../components/Game/TurnStartCountdown";
 // };
 
 const initialState = {
-    activePlayerId: '12345',
     playerIds: [
+        '12345',
         '23456',
         '34567',
         '45678',
@@ -23,8 +27,12 @@ const initialState = {
         '67890',
         '78901',
         '89012',
-        '12345'
     ],
+    teamMembers: {
+        '1': ['12345', '23456', '45678', '67890'],
+        '2': ['34567', '56789', '78901', '89012']
+    },
+    turnNumber: 0,
     turnStartCountdownSeconds: TurnStartCountdown.numberOfSeconds,
     round: 1,
     started: true,
@@ -150,6 +158,10 @@ function game(state = initialState, action) {
                 playerWords: {
                     ...state.playerWords,
                     ...action.playerIds.reduce((playerWords, playerId) => ({...playerWords, [playerId]: []}), {})
+                },
+                teamMembers: {
+                    ...state.teamMembers,
+                    ...action.teamIds.reduce((teamMembers, teamId) => ({...teamMembers, [teamId]: [...action.teamMembers[teamId]]}))
                 }
             };
         case 'RESET_TURN_START_COUNTDOWN':

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import WordCollector from './WordCollector';
 import AwaitingActivePlayerConfirmation from './AwaitingActivePlayerConfirmation';
 import TurnStartCountdown from './TurnStartCountdown';
+import PlayerTurn from './PlayerTurn';
 
 class Game extends Component {
 	static propTypes = {
@@ -17,7 +18,7 @@ class Game extends Component {
 				{this.props.explainingRules && <div>Rules</div>}
 				{this.props.awaitingActivePlayerConfirmation && <AwaitingActivePlayerConfirmation/>}
 				{this.props.turnStartCountdown && <TurnStartCountdown/>}
-				{this.props.playerTurnActive && <div>Player turn active</div>}
+				{this.props.playerTurnActive && <PlayerTurn/>}
 			</div>
 		);
 	}

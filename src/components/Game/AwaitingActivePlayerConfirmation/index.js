@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import PlayerConfirmationScreen from './PlayerConfirmationScreen';
+import {getActiveTeamAndPlayers} from '../../../tools/lib';
 
 class AwaitingActivePlayerConfirmation extends Component {
     static propTypes = {
@@ -25,9 +26,10 @@ class AwaitingActivePlayerConfirmation extends Component {
 }
 
 const mapStateToProps = (state) => {
+    const {activePlayerId} = getActiveTeamAndPlayers(state);
 	return {
-        activePlayerId: state.game.activePlayerId,
-        playerIsActive: state.game.activePlayerId === state.me.playerId
+        activePlayerId: activePlayerId,
+        playerIsActive: activePlayerId === state.me.playerId
 	};
 };
 

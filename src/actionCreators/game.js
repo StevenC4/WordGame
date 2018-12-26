@@ -38,7 +38,9 @@ export function movePlayersFromWaitingRoomToGame() {
         const state = getState();
         dispatch({
             type: 'MOVE_PLAYERS_FROM_WAITING_ROOM_TO_GAME',
-            playerIds: [...state.waitingRoom.playerIds]
+            playerIds: [...state.waitingRoom.playerIds],
+            teamIds: [...state.waitingRoom.teamIds],
+            teamMembers: {...state.waitingRoom.teamMembers}
         });
     }
 }

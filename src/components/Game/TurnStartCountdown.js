@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import actionCreators from '../../actionCreators';
+import {getActiveTeamAndPlayers} from '../../tools/lib';
 
 class TurnStartCountdown extends Component {
     static numberOfSeconds = 5;
@@ -45,10 +46,11 @@ class TurnStartCountdown extends Component {
 }
 
 const mapStateToProps = state => {
+    const {activePlayerId} = getActiveTeamAndPlayers(state);
 	return {
-        activePlayerId: state.game.activePlayerId,
-        activePlayerName: state.players.names[state.game.activePlayerId],
-        playerIsActive: state.game.activePlayerId === state.me.playerId,
+        activePlayerId: activePlayerId,
+        activePlayerName: state.players.names[activePlayerId],
+        playerIsActive: activePlayerId === state.me.playerId,
         turnStartCountdownSeconds: state.game.turnStartCountdownSeconds
     };
 };
