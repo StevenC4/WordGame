@@ -45,14 +45,6 @@ export function movePlayersFromWaitingRoomToGame() {
     }
 }
 
-export function resetTurnStartCountdown() {
-    return function(dispatch, _getState) {
-        dispatch({
-            type: 'RESET_TURN_START_COUNTDOWN'
-        });
-    }
-}
-
 export function startTurnStartCountdown() {
     return function(dispatch, _getState) {
         dispatch({
@@ -66,39 +58,5 @@ export function startGame() {
         dispatch({
             type: 'START_GAME'
         });
-    }
-}
-
-export function turnCountdownTick() {
-    return function(dispatch, getState) {
-        const state = getState();
-        const turnCountdownSeconds = state.game.turnCountdownSeconds - 1;
-
-        dispatch({
-            type: 'TURN_COUNTDOWN_TICK',
-            turnCountdownSeconds
-        });
-
-        if (turnCountdownSeconds === 0) {
-            // TODO: increment turn and set awaiting player confirmation
-        }
-    }
-}
-
-export function turnStartCountdownTick() {
-    return function(dispatch, getState) {
-        const state = getState();
-        const turnStartCountdownSeconds = state.game.turnStartCountdownSeconds - 1;
-
-        dispatch({
-            type: 'TURN_START_COUNTDOWN_TICK',
-            turnStartCountdownSeconds
-        });
-
-        if (turnStartCountdownSeconds === 0) {
-            dispatch({
-                type: 'SET_PLAYER_TURN_ACTIVE'
-            });
-        }
     }
 }

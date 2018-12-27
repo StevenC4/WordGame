@@ -3,6 +3,7 @@ import game from './game';
 import me from './me';
 import players from './players';
 import teams from './teams';
+import turn from './turn';
 import waitingRoom from './waitingRoom';
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     me,
     players,
     teams,
+    turn,
     waitingRoom
 });
 

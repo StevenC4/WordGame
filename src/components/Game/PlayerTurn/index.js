@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getActiveTeamAndPlayers} from '../../../tools/lib';
 import actionCreators from '../../../actionCreators';
+import ActivePlayerTurn from './ActivePlayerTurn';
 
 class PlayerTurn extends Component {
 	static propTypes = {
@@ -35,9 +36,8 @@ class PlayerTurn extends Component {
 	render() {
         return (
             <div>
-                {this.props.playerIsActive && <div>You are the active player</div>}
+                {this.props.playerIsActive && <ActivePlayerTurn/>}
                 {!this.props.playerIsActive && <div>You are not the active player</div>}
-                <h1>{this.props.turnCountdownSeconds}</h1>
             </div>
         );
     }
@@ -58,7 +58,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    turnCountdownTick: actionCreators.game.turnCountdownTick
+    turnCountdownTick: actionCreators.turn.countdownTick
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerTurn);

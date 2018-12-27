@@ -7,7 +7,7 @@ import PlayerTurn from "../components/Game/PlayerTurn";
 //     teamMembers: {
 //         '1': ['23456', '45678', '67890', '89012'],
 //         '2': ['34567', '56789', '78901']
-//     }
+//     },
 //     turnNumber: 0,
 //     turnStartCountdown: TurnStartCountdown.numberOfSeconds,
 //     round: 1,
@@ -33,9 +33,11 @@ const initialState = {
         '1': ['12345', '23456', '45678', '67890'],
         '2': ['34567', '56789', '78901', '89012']
     },
-    turnNumber: 0,
     turnCountdownSeconds: PlayerTurn.numberOfSeconds,
+    turnNumber: 0,
     turnStartCountdownSeconds: TurnStartCountdown.numberOfSeconds,
+    turnWordPool: [],
+    turnWordPoolUsed: [],
     round: 1,
     started: true,
     state: 'PLAYER_TURN_ACTIVE',
@@ -190,16 +192,6 @@ function game(state = initialState, action) {
             return {
                 ...state,
                 started: true
-            }
-        case 'TURN_COUNTDOWN_TICK':
-            return {
-                ...state,
-                turnCountdownSeconds: action.turnCountdownSeconds
-            }
-        case 'TURN_START_COUNTDOWN_TICK':
-            return {
-                ...state,
-                turnStartCountdownSeconds: action.turnStartCountdownSeconds
             }
         default:
             return state;

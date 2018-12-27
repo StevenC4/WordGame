@@ -51,13 +51,13 @@ const mapStateToProps = state => {
         activePlayerId: activePlayerId,
         activePlayerName: state.players.names[activePlayerId],
         playerIsActive: activePlayerId === state.me.playerId,
-        turnStartCountdownSeconds: state.game.turnStartCountdownSeconds
+        turnStartCountdownSeconds: state.turn.startCountdownSeconds
     };
 };
 
 const mapDispatchToProps = {
-    turnStartCountdownTick: actionCreators.game.turnStartCountdownTick,
-    resetTurnStartCountdown: actionCreators.game.resetTurnStartCountdown
+    turnStartCountdownTick: actionCreators.turn.startCountdownTick,
+    resetTurnStartCountdown: actionCreators.turn.resetStartCountdown
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TurnStartCountdown);
