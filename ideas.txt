@@ -22,3 +22,12 @@ Awards:
 Skips:
 * Each player could have 2 (or 3) skips per turn
 * Skips could be worth .5 points if you don't use them
+
+Config file:
+* Store all configurations (timer #s of seconds) in a config file
+    * Number of teams (2)
+
+Game options:
+* Store configurable settings in a separate config file (defaults) that can be overridden by stored sqlite options
+    * Number of skips per turn
+    * Number of seconds per turn

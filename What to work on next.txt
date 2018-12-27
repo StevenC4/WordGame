@@ -1,0 +1,12 @@
+* Limited number of skips per turn
+* End the turn when the time runs out
+* Show a recap of the player's turn for 5 - 7 seconds
+* Start the next player's turn
+
+* End the turn early and end the round when the player finishes all of the words during their turn
+* End of round recap screen
+* Explanations per round (1, 2, and 3) with a "Ready" button for each player
+* For team members of active players, show a screen with # of points of both teams and number of points this round, with the time remaining
+* For inactive team, show "Team 2's turn"
+* End of game screen
+* VIP player can control when the game starts
