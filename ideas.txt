@@ -1,0 +1,24 @@
+Correct word streak
+* When you get multiple correct words in a row, you start a streak
+  * For each point you get in a row, the streak increases
+  * When you click "Skip", the streak is reset to 0
+  * It's technically not a streak until you get more than 1
+  * Maybe it should only be a streak when you get 3+ or 5+ in a row
+  * We can keep track of who has the biggest streak (player and team)
+    * The team with the biggest streak at the end gets +5 points
+    * Or, whenever the other team beats your teams streak, they get +5 points
+  * In the awards at the end, show the player with the longest streak
+
+Awards:
+* Player with most total points
+* Player with the most points in a particular category
+    * This could be based on a statistical analysis to see if the player does significantly better than the others in a particular category
+* Player with the biggest streak
+* Player with fastest WPM (overall or per category)
+* Player with the most skips (anti-award)
+* Player with the hardest words
+
+Skips:
+* Each player could have 2 (or 3) skips per turn
+* Skips could be worth .5 points if you don't use them
+

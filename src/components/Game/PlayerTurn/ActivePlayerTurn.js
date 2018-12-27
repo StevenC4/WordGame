@@ -21,6 +21,7 @@ class ActivePlayerTurn extends Component {
             this.props.skipWord();
         } else if (name === 'wordCorrect') {
             this.props.markWordCorrect();
+            this.props.addPoint();
         }
     }
 
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
+    addPoint: actionCreators.score.addPoint,
     markWordCorrect: actionCreators.turn.markWordCorrect,
     skipWord: actionCreators.turn.skipWord,
     turnCountdownTick: actionCreators.turn.countdownTick
