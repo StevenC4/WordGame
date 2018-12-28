@@ -31,7 +31,7 @@ class ActivePlayerTurn extends Component {
                 <h1>You're up!</h1>
                 <h2>{this.props.turnCountdownSeconds}</h2>
                 <h2>{this.props.currentWord}</h2>
-                <button name='skipWord' onClick={this.handleClick}>Skip</button>
+                <button name='skipWord' onClick={this.handleClick} disabled={!this.props.canSkip}>Skip ({this.props.skips})</button>
                 <button name='wordCorrect' onClick={this.handleClick}>Correct</button>
             </div>
         );
@@ -42,7 +42,9 @@ const mapStateToProps = (state) => {
     const currentWordId = state.turn.currentWordId;
     const currentWord = currentWordId ? state.game.words[currentWordId] : null;
 	return {
+        canSkip: state.turn.skips > 0,
         currentWord: currentWord,
+        skips: state.turn.skips,
         turnCountdownSeconds: state.turn.countdownSeconds
 	};
 };

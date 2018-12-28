@@ -15,6 +15,7 @@ import PlayerTurn from "../components/Game/PlayerTurn";
 //     wordIds: [],
 //     wordCollectorError: null,
 //     words: {},
+//     playerSkips: {},
 //     playerWords: {}
 // };
 
@@ -39,6 +40,16 @@ const initialState = {
     turnWordPool: [],
     turnWordPoolUsed: [],
     round: 1,
+    playerSkips: {
+        '12345': 0,
+        '23456': 0,
+        '34567': 0,
+        '45678': 0,
+        '56789': 0,
+        '67890': 0,
+        '78901': 0,
+        '89012': 0,
+    },
     started: true,
     state: 'PLAYER_TURN_ACTIVE',
     wordIds: [
@@ -192,6 +203,11 @@ function game(state = initialState, action) {
             return {
                 ...state,
                 started: true
+            }
+        case 'USE_SKIP':
+            return {
+                ...state,
+                playerSkips: action.playerSkips
             }
         default:
             return state;

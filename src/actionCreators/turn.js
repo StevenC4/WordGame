@@ -35,27 +35,41 @@ export function resetTurnStartCountdown() {
 export function skipWord() {
     return function(dispatch, getState) {
         const state = getState();
-        const currentWordId = state.turn.currentWordId;
 
-        let wordPool = [...state.turn.wordPool];
-        let wordPoolUsed = [...state.turn.wordPoolUsed, ...currentWordId];
+        if (state.turn.skips > 0) {
+            const currentWordId = state.turn.currentWordId;
 
-        if (!wordPool.length) {
-            wordPool = [...wordPoolUsed];
-            wordPoolUsed = [];
+            let wordPool = [...state.turn.wordPool];
+            let wordPoolUsed = [...state.turn.wordPoolUsed, ...currentWordId];
+
+            if (!wordPool.length) {
+                wordPool = [...wordPoolUsed];
+                wordPoolUsed = [];
+            }
+
+            const newWordIndex = Math.floor(Math.random() * wordPool.length);
+            const newWordId = wordPool[newWordIndex];
+
+            wordPool = wordPool.filter(wordId => wordId !== newWordId);
+
+            const playerId = state.me.playerId;
+
+            dispatch({
+                type: 'USE_SKIP',
+                playerSkips: {
+                    ...state.game.playerSkips,
+                    [playerId]: state.game.playerSkips[playerId] + 1
+                },
+                skips: state.turn.skips - 1
+            });
+
+            dispatch({
+                type: 'PLAYER_TURN_UPDATE_CURRENT_WORD_AND_POOL',
+                currentWordId: newWordId,
+                wordPool,
+                wordPoolUsed: [...state.turn.wordPoolUsed, currentWordId]
+            });
         }
-
-        const newWordIndex = Math.floor(Math.random() * wordPool.length);
-        const newWordId = wordPool[newWordIndex];
-
-        wordPool = wordPool.filter(wordId => wordId !== newWordId);
-
-        dispatch({
-            type: 'PLAYER_TURN_UPDATE_CURRENT_WORD_AND_POOL',
-            currentWordId: newWordId,
-            wordPool,
-            wordPoolUsed: [...state.turn.wordPoolUsed, currentWordId]
-        });
     };
 }
 

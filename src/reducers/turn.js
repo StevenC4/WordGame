@@ -5,6 +5,7 @@ import TurnStartCountdown from '../components/Game/TurnStartCountdown';
 //     countdownSeconds: PlayerTurn.numberOfSeconds,
 //     currentWordId: null,
 //     number: 0,
+//     skips: 0,
 //     startCountdownSeconds: TurnStartCountdown.numberOfSeconds,
 //     wordPool: [],
 //     wordPoolUsed: []
@@ -14,6 +15,7 @@ const initialState = {
     countdownSeconds: PlayerTurn.numberOfSeconds,
     currentWordId: '20',
     number: 0,
+    skips: 3,
     startCountdownSeconds: TurnStartCountdown.numberOfSeconds,
     wordPool: [
         '13',
@@ -93,6 +95,11 @@ function turn(state = initialState, action) {
             return {
                 ...state,
                 startCountdownSeconds: action.startCountdownSeconds
+            }
+        case 'USE_SKIP':
+            return {
+                ...state,
+                skips: action.skips
             }
         default:
             return state;
