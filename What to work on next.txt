@@ -10,3 +10,6 @@
 * For inactive team, show "Team 2's turn"
 * End of game screen
 * VIP player can control when the game starts
+
+* Plug in server
+    * When setting up for a new player's turn, reset the number of skips they can use - from a config
